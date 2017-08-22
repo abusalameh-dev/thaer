@@ -32,8 +32,6 @@ class ProductsController extends Controller
                 ->addColumn('actions', function($product){
                     $editRoute = route('products.edit',['id' => $product->id]);
                     $deleteRoute = route('products.destroy',['id' => $product->id]);
-                    // $showRoute = route('products.show',['id' => $product->id]);
-                    // $str = "<a href='$showRoute'class='btn btn-sm btn-info ' ><i class='glyphicon glyphicon-eye-open'></i> عرض </a> &nbsp";
                     $str = "<a href='$editRoute'class='btn btn-sm btn-primary'><i class='glyphicon glyphicon-edit'></i> تعديل </a> &nbsp";
                     $str .= "<a href='#'class='btn btn-sm btn-danger delete' onclick='deleteItem($product->id)' data-id='$product->id'><i class='glyphicon glyphicon-trash'></i> حذف </a> &nbsp";
                     $str .= "<form id='delete-form-{$product->id}' action=". route('products.destroy',['id'=> $product->id]). " method='POST' style='display: none;'> ". csrf_field()." ";
@@ -102,7 +100,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect(route('products.index'));
     }
 
     /**
@@ -179,6 +177,19 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        if (!$product) return redirect(route('products.index'));
+
+        // Delete Image and Record 
+        $product->image->deleteFile();
+        $product->image->delete();
+        // Delete Product 
+        $product->delete();
+        // Flash Message 
+        session()->flash('message', 'تمت عملية الحذف بنجاح');
+        session()->flash('status', 'success');
+        // Redirect Back 
+        return redirect(route('products.index'));
+
     }
 }

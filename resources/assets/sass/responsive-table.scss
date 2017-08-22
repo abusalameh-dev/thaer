@@ -1,0 +1,158 @@
+////////////////////////////////////////////////////////////////////////
+// Some functions
+////////////////////////////////////////////////////////////////////////
+@function first($list){
+  @return nth($list, 1);
+}
+@function last($list) {
+  @return nth($list, length($list));
+}
+
+////////////////////////////////////////////////////////////////////////
+// Variables
+////////////////////////////////////////////////////////////////////////
+
+// Breakpoint ranges
+$small  : (0, 640px);
+$medium : (641px, 1024px);
+$large  : (1025px, 999999px);
+
+// Media queries
+$small-up    : "screen";
+$small-only  : "#{$small-up} and (max-width:  #{last($small)})";
+$medium-up   : "screen and (min-width: #{first($medium)})";
+$medium-only : "#{$medium-up} and (max-width: #{last($medium)})";
+$large-up    : "screen and (min-width: #{first($large)})";
+$large-only  : "#{$large-up} and (max-width: #{last($large)})";
+
+// Colors
+$white: #ffffff;
+$black: #000000;
+$dat-blue: #2980b9;
+
+////////////////////////////////////////////////////////////////////////
+// Some mixins
+////////////////////////////////////////////////////////////////////////
+
+// Micro clearfix
+@mixin clearfix() {
+  &:before, &:after {
+    content: " ";
+    display: table
+  }
+  
+  &:after { clear: both }
+}
+
+////////////////////////////////////////////////////////////////////////
+// Styles start
+////////////////////////////////////////////////////////////////////////
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+h1 {
+  margin-bottom: 40px;
+  color: #222222;
+  
+  small {
+    font-size: 22px;
+    display: block;
+    color: rgba(0,0,0,0.6);
+  }
+}
+
+// Just tedious stuff
+.row {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
+  @include clearfix;
+}
+
+.column {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+// The table stuff
+
+table.responsive {
+  width: 100%;  
+  margin-bottom: 40px;
+  
+  thead tr{
+    display: none;
+    
+    @media #{$medium-up} {
+      display: table-row;
+    }
+  }
+  
+  th, td {
+    padding: 5px 8px;
+  }
+  
+  caption, th{
+    background: $dat-blue;
+    color: $white;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+  
+  th { text-align: left; }
+  
+  caption {
+    padding: 5px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  
+  tr, td {
+    display: block;
+    width: 100%;
+  }
+  
+  td {
+    font-size: 13px;
+    @include clearfix;
+    
+    span {
+      display: block;
+      float: left;
+      
+      &.label {
+        min-width: 120px;
+        padding: 0 10px 0 0;
+        text-transform: capitalize;
+        font-weight: bold;
+      }
+    }
+    
+    @media #{$medium-up} {
+      display: table-cell;
+      width: auto;
+      
+      span {
+        float: none;
+        
+        &.label { display: none; }
+      }
+   }
+  }
+  
+  tr {
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    
+    @media #{$medium-up} {
+      display: table-row;
+      border-bottom: none;
+    }
+    
+    // This makes adds the striped row styling
+    &:nth-child(even) {
+      td { background: #f0f0f0; }
+    }
+  }
+}
+
