@@ -15,7 +15,8 @@ Route::get('/', function () {
     return redirect('/app');
 });
 
-Route::get('/one-signal', function(){
+Route::get('/onesignal', function(){
+	dd('dddd');
 	$content = array(
 			"en" => 'English Message'
 			);
