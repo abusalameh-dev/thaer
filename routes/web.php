@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('/app');
-});
+
 
 Route::get('/onesignal', function(){
 	dd('dddd');
@@ -46,6 +44,10 @@ Route::get('/onesignal', function(){
 		curl_close($ch);
 		
 		return $response;
+});
+
+Route::get('/', function () {
+    return redirect('/app');
 });
 Auth::routes();
 
