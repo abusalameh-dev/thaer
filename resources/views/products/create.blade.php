@@ -30,7 +30,11 @@
 			data: data,
 			dir: "rtl",
 			theme: "classic"
-
+		});
+		$('#category_id').select2({
+			data: data,
+			dir: "rtl",
+			theme: "classic"
 		});
 	</script>
 @endpush

@@ -56,6 +56,19 @@
 			@endif
 		</div>
 	</div>
+	<div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
+		<label for="category_id" class="col-md-3 control-label">التصنيف</label>
+		<div class="col-md-6">
+			<select id="category_id" class="form-control" name="category_id" style="height: 45px;">
+				<option selected>-- اختر --</option>
+			</select>
+			@if ($errors->has('category_id'))
+			<span class="help-block">
+				<strong>{{ $errors->first('category_id') }}</strong>
+			</span>
+			@endif
+		</div>
+	</div>
 	<div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
 		<label for="image" class="col-md-3 control-label">صورة الصنف</label>
 		<div class="col-md-6">

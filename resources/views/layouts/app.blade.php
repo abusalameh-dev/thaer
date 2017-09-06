@@ -46,18 +46,18 @@
                     <ul class="nav navbar-nav navbar-left">
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    المزودون <span class="caret"></span>
+                                    الموردون <span class="caret"></span>
                             </a>
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="/provider/create">
+                                        <a href="{{ route('provider.create')}}">
                                             <span class="glyphicon glyphicon-plus"></span>
-                                            إضافة مزود جديد
+                                            إضافة مورد جديد
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/provider/">
+                                        <a href="{{ route('provider.index')}}">
                                             <span class="glyphicon glyphicon-eye-open"></span>
                                             عرض الكل
                                         </a>
@@ -78,6 +78,26 @@
                                     </li>
                                     <li>
                                         <a href="{{ route('products.index') }}">
+                                            <span class="glyphicon glyphicon-eye-open"></span>
+                                            عرض الكل
+                                        </a>
+                                    </li>
+                                </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    التصنيفات <span class="caret"></span>
+                            </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ route('category.create')}}">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                            إضافة تصنيف جديد
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('category.index') }}">
                                             <span class="glyphicon glyphicon-eye-open"></span>
                                             عرض الكل
                                         </a>

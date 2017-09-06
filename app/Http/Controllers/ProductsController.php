@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Photo;
 use App\Product;
 use App\Provider;
@@ -47,7 +48,8 @@ class ProductsController extends Controller
     public function create()
     {
         $providers = Provider::select('id','name as text')->get();
-        return view('products.create', compact('providers'));
+        $categories = Category::select('id','name as text')->get();
+        return view('products.create', compact('providers','categories'));
     }
 
     /**
@@ -64,6 +66,7 @@ class ProductsController extends Controller
             'sell_price' => 'required|numeric',
             'origin_price' => 'required|numeric',
             'provider_id' => 'required|exists:providers,id',
+            'category_id' => 'required|exists:categories,id',
             'image' => 'required|image',
         ]);
         $product = Product::create([
@@ -72,6 +75,7 @@ class ProductsController extends Controller
             'sell_price'  => $request->sell_price,
             'origin_price'  => $request->origin_price,
             'provider_id'  => $request->provider_id,
+            'category_id'  => $request->category_id,
         ]);
 
         if ($request->hasFile('image')) {
@@ -113,9 +117,10 @@ class ProductsController extends Controller
     {
         $product = Product::find($id);
         $providers = Provider::select('id','name as text')->get();
+        $categories = Category::select('id','name as text')->get();
         if (!$product) return redirect(route('products.index'));
 
-        return view('products.edit',compact('product','providers'));
+        return view('products.edit',compact('product','providers','categories'));
 
     }
 
