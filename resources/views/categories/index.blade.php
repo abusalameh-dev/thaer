@@ -12,23 +12,22 @@
     </style>
 @endsection
 @section('heading')
-	قائمة الأصناف 
-    
+	قائمة التصنيفات 
+    <a href="{{ route('category.create')}}" class="pull-left">
+        <span class="glyphicon glyphicon-plus"></span>
+        إضافة تصنيف جديد
+    </a>
 @endsection
 
 @section('content')
 	@include('partials.flash')
     <div style="width: 100%; padding-left: -10px;">
         <div class="table-responsive">
-        	<table class="table-bordered display nowrap responsive" id="products" cellspacing="0" width="100%"> 
+        	<table class="table-bordered display nowrap responsive" id="categories" cellspacing="0" width="100%"> 
                 <thead>
                     <tr >
                         <th>الرقم التسلسلي</th>
-                        <th>اسم الصنف</th>
-                        <th>سعر البيع</th>
-                        <th>المورد</th>
-                        <th>التصنيف</th>
-                        <th>الصورة</th>
+                        <th>اسم التصنيف</th>
                         <th>الاجراءات</th>
                     </tr>
                 </thead>
@@ -41,11 +40,11 @@
     <script>
 $(function() {
      
-    $('#products').DataTable({
+    $('#categories').DataTable({
         lengthMenu: [ [10, 25, 50], [10, 25, 50] ],
         processing: true,
         serverSide: true,
-        ajax: '{!! route('api.products') !!}',
+        ajax: '{!! route('api.categories') !!}',
         paging:true,
         responsive: true,
         owReorder: {
@@ -57,10 +56,6 @@ $(function() {
         columns: [
             { data: 'id', name: 'id',orderable: true, searchable: true },
             { data: 'name', name: 'name',orderable: true, searchable: true },
-            { data: 'origin_price', name: 'origin_price',orderable: true, searchable: true },
-            { data: 'provider_id', name: 'provider_id',orderable: true, searchable: true },
-            {data: 'category_id', name: 'category_id',orderable: true, searchable: true },
-            { data: 'image', name: 'image',orderable: true, searchable: true },
             {data: 'actions', name: 'actions', orderable: false, searchable: false}
         ]
     });
@@ -74,7 +69,7 @@ var alertEl = $('div.alert');
     }
 
 function deleteItem(id) {
-        var message = 'هل انت متأكد من أنك تود اتمام عملية الحذف ?';
+        var message = 'هل انت متأكد أنك تريد حذف  ?';
         var ok = confirm(message);
         if (!ok) return false;
         $('#delete-form-' + id).submit();

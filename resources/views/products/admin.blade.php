@@ -26,8 +26,7 @@
                         <th>الرقم التسلسلي</th>
                         <th>اسم الصنف</th>
                         <th>سعر البيع</th>
-                        <th>المورد</th>
-                        <th>التصنيف</th>
+                        <th>سعر التكلفة</th>
                         <th>الصورة</th>
                         <th>الاجراءات</th>
                     </tr>
@@ -57,9 +56,8 @@ $(function() {
         columns: [
             { data: 'id', name: 'id',orderable: true, searchable: true },
             { data: 'name', name: 'name',orderable: true, searchable: true },
+            { data: 'sell_price', name: 'sell_price',orderable: true, searchable: true },
             { data: 'origin_price', name: 'origin_price',orderable: true, searchable: true },
-            { data: 'provider_id', name: 'provider_id',orderable: true, searchable: true },
-            {data: 'category_id', name: 'category_id',orderable: true, searchable: true },
             { data: 'image', name: 'image',orderable: true, searchable: true },
             {data: 'actions', name: 'actions', orderable: false, searchable: false}
         ]
@@ -74,7 +72,7 @@ var alertEl = $('div.alert');
     }
 
 function deleteItem(id) {
-        var message = 'هل انت متأكد من أنك تود اتمام عملية الحذف ?';
+        var message = 'Are you sure you want to delete this record ?';
         var ok = confirm(message);
         if (!ok) return false;
         $('#delete-form-' + id).submit();

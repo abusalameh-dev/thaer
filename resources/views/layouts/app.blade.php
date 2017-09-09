@@ -8,12 +8,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>
+        Store
+    </title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
-    {{-- <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/responsive/2.1.1/css/dataTables.responsive.css"> --}}
     @yield('styles')
 </head>
 <body>
@@ -158,45 +159,6 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
-        <script>
-            var OneSignal = window.OneSignal || [];
-            OneSignal.push(["init", {
-                appId: "9d4fcc12-cb93-4aa7-a8e3-38a8ca2fca06",
-                autoRegister: true, /* Set to true to automatically prompt visitors */
-                persistNotification: true // Automatically dismiss the notification after ~20 seconds in Chrome Deskop v47+
-                httpPermissionRequest: {
-                    enable: true
-                },
-                notifyButton: {
-                    enable: true, /* Required to use the notify button */
-                    size: 'medium', /* One of 'small', 'medium', or 'large' */
-                    theme: 'default', /* One of 'default' (red-white) or 'inverse" (white-red) */
-                    position: 'bottom-right', /* Either 'bottom-left' or 'bottom-right' */
-                    offset: {
-                        bottom: '0px',
-                        left: '0px', /* Only applied if bottom-left */
-                        right: '0px' /* Only applied if bottom-right */
-                    },
-                    prenotify: true, /* Show an icon with 1 unread message for first-time site visitors */
-                    showCredit: false, /* Hide the OneSignal logo */
-                    text: {
-                        'tip.state.unsubscribed': 'Subscribe to notifications',
-                        'tip.state.subscribed': "You're subscribed to notifications",
-                        'tip.state.blocked': "You've blocked notifications",
-                        'message.prenotify': 'Click to subscribe to notifications',
-                        'message.action.subscribed': "Thanks for subscribing!",
-                        'message.action.resubscribed': "You're subscribed to notifications",
-                        'message.action.unsubscribed': "You won't receive notifications again",
-                        'dialog.main.title': 'Manage Site Notifications',
-                        'dialog.main.button.subscribe': 'SUBSCRIBE',
-                        'dialog.main.button.unsubscribe': 'UNSUBSCRIBE',
-                        'dialog.blocked.title': 'Unblock Notifications',
-                        'dialog.blocked.message': "Follow these instructions to allow notifications:"
-                    }
-                }
-            }]);
-        </script>
     @stack('scripts')
 
 </body>

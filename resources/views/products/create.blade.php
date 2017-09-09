@@ -24,15 +24,16 @@
 @push('scripts')
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
 	<script type="text/javascript">
-		var data = {!! json_encode($providers) !!};
+		var providers = {!! json_encode($providers) !!};
+		var categories = {!! json_encode($categories) !!};
 
 		$('#provider_id').select2({
-			data: data,
+			data: providers,
 			dir: "rtl",
 			theme: "classic"
 		});
 		$('#category_id').select2({
-			data: data,
+			data: categories,
 			dir: "rtl",
 			theme: "classic"
 		});

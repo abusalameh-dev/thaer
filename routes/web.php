@@ -25,9 +25,10 @@ Route::prefix('app')->middleware(['auth'])->group(function () {
         return redirect('/app/home');
     });
     Route::resource('products', 'ProductsController');
-    Route::resource('category', 'CategoriesController');
-    Route::resource('provider', 'ProvidersController');
+    Route::resource('category', 'CategoriesController',['except' => ['show', 'destroy']]);
+    Route::resource('provider', 'ProvidersController',['except' => ['show', 'destroy']]);
 
     Route::get('/api/products','ProductsController@getAll')->name('api.products');
     Route::get('/api/providers','ProvidersController@getAll')->name('api.providers');
+    Route::get('/api/categories','CategoriesController@getAll')->name('api.categories');
 });

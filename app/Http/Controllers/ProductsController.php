@@ -30,6 +30,12 @@ class ProductsController extends Controller
                     $image = '<img src="/products/'.$product->image->filename.'" class="img-thumbnail" style="width:100px;height:100px" />';
                     return  $image;    
                 })
+                ->editColumn('provider_id',function($product){
+                    return ($product->load('provider'))->name;
+                })
+                ->editColumn('category_id',function($product){
+                    return $product->category->name;
+                })
                 ->addColumn('actions', function($product){
                     $editRoute = route('products.edit',['id' => $product->id]);
                     $deleteRoute = route('products.destroy',['id' => $product->id]);

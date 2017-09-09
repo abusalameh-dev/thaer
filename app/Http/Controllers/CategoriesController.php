@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Facades\Datatables;
 
 class CategoriesController extends Controller
 {
@@ -13,9 +15,18 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        return view('categories.index');
     }
 
+    public function getAll()
+    {
+        return Datatables::of(Category::query())
+                ->addColumn('actions', function($category){
+                    $editRoute = route('category.edit',['id' => $category->id]);
+                    $str = "<a href='$editRoute'class='btn btn-sm btn-primary'><i class='glyphicon glyphicon-edit'></i> تعديل </a> &nbsp";
+                    return $str;
+                })->rawColumns(['actions'])->make(true);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -23,7 +34,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -34,7 +45,17 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required',
+        ]);
+        $category = Category::create([
+            'name'  => $request->name,
+        ]);
+
+        
+        session()->flash('message', 'تمت عملية التصنيف بنجاح ');
+        session()->flash('status', 'success');
+        return redirect(route('category.index'));
     }
 
     /**
@@ -56,7 +77,9 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        if (!$category) return redirect(route('category.index'));
+        return view('categories.edit',compact('category'));
     }
 
     /**
@@ -68,7 +91,17 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+        if (!$category) return redirect(route('category.index'));
+
+        $this->validate($request,[ 'name' => 'required' ]);
+
+        Category::where('id',$id)->update([ 'name'  => $request->name ]);
+
+        session()->flash('message', 'تمت عملية التعديل بنجاح');
+        session()->flash('status', 'success');
+
+        return redirect(route('category.index'));
     }
 
     /**

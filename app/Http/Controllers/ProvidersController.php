@@ -23,7 +23,6 @@ class ProvidersController extends Controller
         return Datatables::of(Provider::query())
                 ->addColumn('actions', function($provider){
                     $editRoute = route('provider.edit',['id' => $provider->id]);
-                    $deleteRoute = route('provider.destroy',['id' => $provider->id]);
                     $str = "<a href='$editRoute'class='btn btn-sm btn-primary'><i class='glyphicon glyphicon-edit'></i> تعديل </a> &nbsp";
                     return $str;
                 })->rawColumns(['actions'])->make(true);
@@ -59,7 +58,7 @@ class ProvidersController extends Controller
         ]);
 
         
-        session()->flash('message', 'تمت عملية المزود بنجاح بنجاح');
+        session()->flash('message', 'تمت عملية المزود بنجاح ');
         session()->flash('status', 'success');
         return redirect(route('provider.index'));
     }
