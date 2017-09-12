@@ -36,7 +36,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
 	<script type="text/javascript">
 		var data = {!! json_encode($providers) !!};
-		var selected = {{ $product->id }}
+		var provider = {{ $product->provider_id }}
+		var category = {{ $product->category_id }}
 
 		$('#provider_id').select2({
 			data: data,
@@ -48,8 +49,8 @@
 			dir: "rtl",
 			theme: "classic"
 		});
-		$("#provider_id").val(selected).trigger("change");
+		$("#provider_id").val(provider).trigger("change");
 		
-		$("#category_id").val(selected).trigger("change");
+		$("#category_id").val(category).trigger("change");
 	</script>
 @endpush
