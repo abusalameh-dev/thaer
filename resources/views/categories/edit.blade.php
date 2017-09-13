@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 
-<form class="form-horizontal" method="POST" action="{{ route('category.update', ['id' => $category->id ]) }}"  >
+<form class="form-horizontal" method="POST" action="{{ route('category.update', ['id' => $category->id ]) }}"  onsubmit="$('.loading').show()">
 	{{ method_field('PATCH') }}
 	@include('partials.categories.form')
 	<div class="form-group">

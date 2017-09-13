@@ -73,7 +73,7 @@ class ProductsController extends Controller
             'origin_price' => 'required|numeric',
             'provider_id' => 'required|exists:providers,id',
             'category_id' => 'required|exists:categories,id',
-            'image' => 'required|image',
+            // 'image' => 'required|image', 
         ]);
         $product = Product::create([
             'name'  => $request->name,

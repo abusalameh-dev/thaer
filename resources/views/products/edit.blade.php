@@ -7,7 +7,7 @@
 @endsection
 @section('content')
 {{-- {{ }} --}}
-<form class="form-horizontal" method="POST" action="{{ route('products.update', ['id' => $product->id ]) }}"  enctype="multipart/form-data">
+<form class="form-horizontal" method="POST" action="{{ route('products.update', ['id' => $product->id ]) }}"  enctype="multipart/form-data" onsubmit="$('.loading').show()">
 	{{ method_field('PATCH') }}
 	@include('partials.products.form')
 	@if ($product->image)
@@ -35,17 +35,18 @@
 @push('scripts')
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
 	<script type="text/javascript">
-		var data = {!! json_encode($providers) !!};
+		var providers = {!! json_encode($providers) !!};
+		var categories = {!! json_encode($categories) !!};
 		var provider = {{ $product->provider_id }}
 		var category = {{ $product->category_id }}
 
 		$('#provider_id').select2({
-			data: data,
+			data: providers,
 			dir: "rtl",
 			theme: "classic"
 		});
 		$('#category_id').select2({
-			data: data,
+			data: categories,
 			dir: "rtl",
 			theme: "classic"
 		});

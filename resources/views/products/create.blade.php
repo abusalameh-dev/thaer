@@ -1,12 +1,16 @@
 @extends('layouts.app')
 @section('styles')
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+	<style type="text/css">
+		/* Absolute Center Spinner */
+	</style>
 @endsection
 @section('heading')
 اضافة صنف جديد
 @endsection
 @section('content')
-<form class="form-horizontal" method="POST" action="{{ route('products.store') }}"  enctype="multipart/form-data">
+
+<form class="form-horizontal" method="POST" action="{{ route('products.store') }}"  enctype="multipart/form-data" onsubmit="$('.loading').show()">
 	@include('partials.products.form')
 	<div class="form-group">
 		<div class="col-md-8 col-md-offset-3">

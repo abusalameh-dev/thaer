@@ -57,7 +57,7 @@ $(function() {
         columns: [
             { data: 'id', name: 'id',orderable: true, searchable: true },
             { data: 'name', name: 'name',orderable: true, searchable: true },
-            { data: 'origin_price', name: 'origin_price',orderable: true, searchable: true },
+            { data: 'sell_price', name: 'sell_price',orderable: true, searchable: true },
             { data: 'provider_id', name: 'provider_id',orderable: true, searchable: true },
             {data: 'category_id', name: 'category_id',orderable: true, searchable: true },
             { data: 'image', name: 'image',orderable: true, searchable: true },

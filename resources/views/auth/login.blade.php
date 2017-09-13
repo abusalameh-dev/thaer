@@ -3,7 +3,8 @@
 تسجيل الدخول
 @endsection
 @section('content')
-<form class="form-horizontal" method="POST" action="{{ route('login') }}">
+<form class="form-horizontal" method="POST" action="{{ route('login') }}" onsubmit="$('.loading').show()">
+    @include('partials.loader')
     {{ csrf_field() }}
     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
         <label for="email" class="col-md-4 control-label">البريد الإلكتروني</label>

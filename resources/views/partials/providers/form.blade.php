@@ -1,3 +1,4 @@
+@include('partials.loader')
 {{ csrf_field() }}
 	<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 		<label for="name" class="col-md-3 control-label">اسم المزود</label>

@@ -3,7 +3,7 @@
 	اضافة صنف جديد
 @endsection
 @section('content')
-<form class="form-horizontal" method="POST" action="{{ route('provider.store') }}"  >
+<form class="form-horizontal" method="POST" action="{{ route('provider.store') }}"  onsubmit="$('.loading').show()">
 	@include('partials.providers.form')
 	<div class="form-group">
 		<div class="col-md-8 col-md-offset-3">

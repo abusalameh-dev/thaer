@@ -3,7 +3,7 @@
 	اضافة تصنيف جديد
 @endsection
 @section('content')
-<form class="form-horizontal" method="POST" action="{{ route('category.store') }}"  >
+<form class="form-horizontal" method="POST" action="{{ route('category.store') }}"  onsubmit="$('.loading').show()">
 	@include('partials.categories.form')
 	<div class="form-group">
 		<div class="col-md-8 col-md-offset-3">
