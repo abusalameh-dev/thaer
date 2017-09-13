@@ -20,7 +20,6 @@ class Photo extends Model
     public function deleteFile()
     {
     	$filename = $this->filename;
-    	// dd($filename);
     	File::delete($this->path . '/' . $filename);
     }
 }

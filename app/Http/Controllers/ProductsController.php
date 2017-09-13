@@ -27,7 +27,12 @@ class ProductsController extends Controller
     {
         return Datatables::of(Product::query())
                 ->addColumn('image', function($product){
-                    $image = '<img src="/products/'.$product->image->filename.'" class="img-thumbnail" style="width:100px;height:100px" />';
+
+                    if (!is_null($product->image))  {
+                        $image = '<img src="/products/'.$product->image->filename.'" class="img-thumbnail" style="width:100px;height:100px" />';
+                    } else {
+                         $image = '<img src="https://screenshotlayer.com/images/assets/placeholder.png" class="img-thumbnail" style="width:100px;height:100px" />';
+                    }
                     return  $image;    
                 })
                 ->editColumn('provider_id',function($product){
