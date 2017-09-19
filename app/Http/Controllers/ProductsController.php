@@ -36,7 +36,8 @@ class ProductsController extends Controller
                     return  $image;    
                 })
                 ->editColumn('provider_id',function($product){
-                    return ($product->load('provider'))->name;
+                    return $product->provider->name;
+                    // return ($product->load('provider'))->name;
                 })
                 ->editColumn('category_id',function($product){
                     return $product->category->name;
