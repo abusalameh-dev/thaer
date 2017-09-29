@@ -1,23 +1,12 @@
 @include('partials.loader')
 {{ csrf_field() }}
 	<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-		<label for="name" class="col-md-3 control-label">اسم الصنف</label>
+		<label for="name" class="col-md-3 control-label">اسم المنتج</label>
 		<div class="col-md-6">
 			<input id="name" type="text" class="form-control" name="name" value="{{  $product->name or old('name')   }}" />
 			@if ($errors->has('name'))
 			<span class="help-block">
 				<strong>{{ $errors->first('name') }}</strong>
-			</span>
-			@endif
-		</div>
-	</div>
-	<div class="form-group{{ $errors->has('code') ? ' has-error' : '' }}">
-		<label for="code" class="col-md-3 control-label">كود الصنف</label>
-		<div class="col-md-6">
-			<input id="code" type="text" class="form-control" name="code" value="{{ $product->code or  old('code') }}"/>
-			@if ($errors->has('code'))
-			<span class="help-block">
-				<strong>{{ $errors->first('code') }}</strong>
 			</span>
 			@endif
 		</div>
@@ -71,7 +60,7 @@
 		</div>
 	</div>
 	<div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
-		<label for="image" class="col-md-3 control-label">صورة الصنف</label>
+		<label for="image" class="col-md-3 control-label">صورة المنتج</label>
 		<div class="col-md-6">
 			<input id="image" type="file" class="form-control" name="image">
 			@if ($errors->has('image'))

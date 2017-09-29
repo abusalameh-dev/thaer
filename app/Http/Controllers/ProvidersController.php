@@ -28,6 +28,32 @@ class ProvidersController extends Controller
                 })->rawColumns(['actions'])->make(true);
     }
 
+    public function search(Request $request)
+    {
+        $term = trim($request->q);
+        $formatted_tags = [];
+        if (empty($term)) {
+            return \Response::json([]);
+        }
+
+        $tags = Provider::where('name', 'like', '%'. $term .'%')
+                        ->get();
+
+        if (! count($tags)) {
+            $new = Provider::create([
+                'name' => $term,
+                'address' => '',
+                'phone' => '',
+            ]);
+            $formatted_tags[] = ['id' => $new->id, 'text' => $new->name];
+        } else {
+            foreach ($tags as $tag) {
+                $formatted_tags[] = ['id' => $tag->id, 'text' => $tag->name];
+            }    
+        }
+
+        return \Response::json($formatted_tags);
+    }
     /**
      * Show the form for creating a new resource.
      *

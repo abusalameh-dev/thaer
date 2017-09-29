@@ -6,7 +6,7 @@
 	</style>
 @endsection
 @section('heading')
-اضافة صنف جديد
+اضافة منتج جديد
 @endsection
 @section('content')
 

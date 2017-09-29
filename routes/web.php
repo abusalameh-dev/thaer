@@ -31,4 +31,7 @@ Route::prefix('app')->middleware(['auth'])->group(function () {
     Route::get('/api/products','ProductsController@getAll')->name('api.products');
     Route::get('/api/providers','ProvidersController@getAll')->name('api.providers');
     Route::get('/api/categories','CategoriesController@getAll')->name('api.categories');
+
+    Route::get('/api/provider/','ProvidersController@search')->name('api.provider.search');
+    Route::get('/api/category/','CategoriesController@search')->name('api.category.search');
 });

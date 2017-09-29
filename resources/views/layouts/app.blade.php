@@ -68,14 +68,14 @@
                         </li>
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    الاصناف <span class="caret"></span>
+                                    المنتجات <span class="caret"></span>
                             </a>
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="{{ route('products.create')}}">
                                             <span class="glyphicon glyphicon-plus"></span>
-                                            إضافة صنف جديد
+                                            إضافة منتج جديد
                                         </a>
                                     </li>
                                     <li>

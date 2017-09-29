@@ -17,7 +17,7 @@
 
 @endsection
 @section('heading')
-	قائمة الأصناف 
+	قائمة المنتجات 
     
 @endsection
 
@@ -29,7 +29,7 @@
                 <thead>
                     <tr >
                         <th>الرقم التسلسلي</th>
-                        <th>اسم الصنف</th>
+                        <th>اسم المنتج</th>
                         <th>سعر البيع</th>
                         <th>المزود</th>
                         <th>التصنيف</th>

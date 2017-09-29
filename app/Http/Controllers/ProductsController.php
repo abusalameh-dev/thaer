@@ -44,8 +44,10 @@ class ProductsController extends Controller
                 })
                 ->addColumn('actions', function($product){
                     $editRoute = route('products.edit',['id' => $product->id]);
+                    $showRoute = route('products.show',['id' => $product->id]);
                     $deleteRoute = route('products.destroy',['id' => $product->id]);
-                    $str = "<a href='$editRoute'class='btn btn-sm btn-primary'><i class='glyphicon glyphicon-edit'></i> تعديل </a> &nbsp";
+                    $str = "<a href='$showRoute'class='btn btn-sm btn-primary'><i class='glyphicon glyphicon-eye-open'></i> عرض </a> &nbsp";
+                    $str .= "<a href='$editRoute'class='btn btn-sm btn-warning'><i class='glyphicon glyphicon-edit'></i> تعديل </a> &nbsp";
                     $str .= "<a href='#'class='btn btn-sm btn-danger delete' onclick='deleteItem($product->id)' data-id='$product->id'><i class='glyphicon glyphicon-trash'></i> حذف </a> &nbsp";
                     $str .= "<form id='delete-form-{$product->id}' action=". route('products.destroy',['id'=> $product->id]). " method='POST' style='display: none;'> ". csrf_field()." ";
                     $str .= method_field('DELETE') . "</form>";
@@ -74,7 +76,6 @@ class ProductsController extends Controller
     {
         $this->validate($request,[
             'name' => 'required',
-            'code' => 'required',
             'sell_price' => 'required|numeric',
             'origin_price' => 'required|numeric',
             'provider_id' => 'required|exists:providers,id',
@@ -83,7 +84,7 @@ class ProductsController extends Controller
         ]);
         $product = Product::create([
             'name'  => $request->name,
-            'code'  => $request->code,
+            'code'  => str_random(20),
             'sell_price'  => $request->sell_price,
             'origin_price'  => $request->origin_price,
             'provider_id'  => $request->provider_id,
@@ -116,7 +117,12 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        return redirect(route('products.index'));
+        $product = Product::find($id);
+        $providers = Provider::select('id','name as text')->get();
+        $categories = Category::select('id','name as text')->get();
+        if (!$product) return redirect(route('products.index'));
+
+        return view('products.show',compact('product','providers','categories'));
     }
 
     /**
@@ -150,7 +156,6 @@ class ProductsController extends Controller
 
         $this->validate($request,[
             'name' => 'required',
-            'code' => 'required',
             'sell_price' => 'required|numeric',
             'origin_price' => 'required|numeric',
             'provider_id' => 'required|exists:providers,id',
@@ -158,7 +163,6 @@ class ProductsController extends Controller
         Product::where('id',$id)
                 ->update([
                     'name'  => $request->name,
-                    'code'  => $request->code,
                     'sell_price'  => $request->sell_price,
                     'origin_price'  => $request->origin_price,
                     'provider_id'  => $request->provider_id,
