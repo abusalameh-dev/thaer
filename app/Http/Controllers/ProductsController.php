@@ -27,20 +27,15 @@ class ProductsController extends Controller
     {
         return Datatables::of(Product::query())
                 ->addColumn('image', function($product){
-
-                    if (!is_null($product->image))  {
-                        $image = '<img src="/products/'.$product->image->filename.'" class="img-thumbnail" style="width:100px;height:100px" />';
-                    } else {
-                         $image = '<img src="https://screenshotlayer.com/images/assets/placeholder.png" class="img-thumbnail" style="width:100px;height:100px" />';
-                    }
-                    return  $image;    
+                    return $product->getImage();
                 })
                 ->editColumn('provider_id',function($product){
-                    return $product->provider->name;
-                    // return ($product->load('provider'))->name;
+                    if (!is_null($product->provider))  return $product->provider->name;
+                    return '-';
                 })
                 ->editColumn('category_id',function($product){
-                    return $product->category->name;
+                    if (!is_null($product->category)) return $product->category->name;
+                    return '-';
                 })
                 ->addColumn('actions', function($product){
                     $editRoute = route('products.edit',['id' => $product->id]);

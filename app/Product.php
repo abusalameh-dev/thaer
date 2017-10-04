@@ -23,6 +23,18 @@ class Product extends Model
 
     public function category()
     {
-    	return $this->belongsTo(Category::class,'provider_id');
+    	return $this->belongsTo(Category::class,'category_id');
+    }
+
+    public function getImage()
+    {
+        if (!is_null($this->image)) '<img src="/products/'.$this->image->filename.'" class="img-thumbnail" style="width:100px;height:100px" />';
+        return '<img src="https://screenshotlayer.com/images/assets/placeholder.png" class="img-thumbnail" style="width:100px;height:100px" />';
+    }
+
+    public function getImagePath()
+    {
+        if (!is_null($this->image)) "/products/" . $this->image->filename;
+        return "https://screenshotlayer.com/images/assets/placeholder.png";
     }
 }

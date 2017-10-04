@@ -15,7 +15,7 @@
 		<h4 class="text-info text-center">الصورة الحالية</h4>
 	  	<div class="col-sm-6 col-md-6 col-md-offset-3">
 	    	<div class="thumbnail">
-	      		<img src="/products/{{ $product->image->filename }}" class="img-thumbnail" data-id="{{ $product->image->id }}" style="width: 50%;height: 50%">
+	      		<img src="{{ $product->getImagePath() }}" class="img-thumbnail" data-id="{{ !is_null($product->image) ? $product->image->id : -1}}" style="width: 50%;height: 50%">
 	    	</div>
 	  	</div>
 	</div>
